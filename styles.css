@@ -1,0 +1,31 @@
+/* Define the 3D transition effect */
+.container {
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transition: transform 1s;
+}
+
+.page-enter {
+  transform: rotateY(90deg);
+}
+
+.page-enter-active {
+  transform: rotateY(0);
+}
+
+.page-exit {
+  transform: rotateY(0);
+}
+
+.page-exit-active {
+  transform: rotateY(-90deg);
+}
