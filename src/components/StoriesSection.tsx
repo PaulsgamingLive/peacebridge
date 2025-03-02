@@ -27,7 +27,7 @@ const StoriesSection = () => {
       id: "1",
       name: "Sarah McBride",
       avatar: "S",
-      community: "community-a",
+      community: "protestant",
       quote: "I never thought I would sit across from someone I once considered an enemy.",
       story: "Growing up, I was taught to fear and distrust the other side. Through this program, I've come to understand that we share the same hopes and dreams for our children. Now we work together on a community garden project."
     },
@@ -35,7 +35,7 @@ const StoriesSection = () => {
       id: "2",
       name: "Michael O'Connor",
       avatar: "M",
-      community: "community-b",
+      community: "catholic",
       quote: "The weight of history feels lighter when we carry it together.",
       story: "My family lost people in the conflict. I carried that anger for decades. Meeting people from the other community and hearing their stories helped me see that we all suffered. Now I help facilitate dialogue sessions."
     },
@@ -43,7 +43,7 @@ const StoriesSection = () => {
       id: "3",
       name: "Rachel Donnelly",
       avatar: "R",
-      community: "community-a",
+      community: "protestant",
       quote: "The first conversation was the hardest, but it changed everything.",
       story: "I avoided these conversations for years. When I finally participated in a dialogue session, I was surprised by how much we had in common. We've formed a women's group that meets monthly to discuss community issues."
     },
@@ -51,7 +51,7 @@ const StoriesSection = () => {
       id: "4",
       name: "Thomas Murphy",
       avatar: "T",
-      community: "community-b",
+      community: "catholic",
       quote: "Our communities were divided, but our future doesn't have to be.",
       story: "As a teacher, I see how the next generation can move beyond our conflicts. I'm working with other educators to develop curriculum that helps young people understand our shared history without inheriting our divisions."
     }
@@ -112,16 +112,16 @@ const StoriesSection = () => {
                 All Stories
               </TabsTrigger>
               <TabsTrigger 
-                value="community-a"
-                onClick={() => setSelectedCommunity("community-a")}
+                value="protestant"
+                onClick={() => setSelectedCommunity("protestant")}
               >
-                Community A
+                Protestant
               </TabsTrigger>
               <TabsTrigger 
-                value="community-b"
-                onClick={() => setSelectedCommunity("community-b")}
+                value="catholic"
+                onClick={() => setSelectedCommunity("catholic")}
               >
-                Community B
+                Catholic
               </TabsTrigger>
             </TabsList>
           </div>
@@ -148,7 +148,7 @@ const StoriesSection = () => {
                   <div>
                     <h3 className="font-semibold text-lg">{story.name}</h3>
                     <p className="text-sm text-foreground/70">
-                      {story.community === "community-a" ? "Community A" : "Community B"}
+                      {story.community === "protestant" ? "Protestant" : "Catholic"}
                     </p>
                   </div>
                   <Quote size={24} className="ml-auto text-primary/40" />

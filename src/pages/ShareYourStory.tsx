@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const ShareYourStory = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [community, setCommunity] = useState("community-a");
+  const [community, setCommunity] = useState("protestant");
   const [quote, setQuote] = useState("");
   const [story, setStory] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -145,33 +145,33 @@ const ShareYourStory = () => {
                         <div>
                           <input
                             type="radio"
-                            id="community-a"
+                            id="protestant"
                             name="community"
                             className="peer hidden"
-                            checked={community === "community-a"}
-                            onChange={() => setCommunity("community-a")}
+                            checked={community === "protestant"}
+                            onChange={() => setCommunity("protestant")}
                           />
                           <label
-                            htmlFor="community-a"
+                            htmlFor="protestant"
                             className="flex cursor-pointer items-center justify-center rounded-md border-2 border-muted bg-transparent p-3 text-sm font-medium ring-offset-background peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-ring peer-focus:ring-offset-2"
                           >
-                            Community A
+                            Protestant
                           </label>
                         </div>
                         <div>
                           <input
                             type="radio"
-                            id="community-b"
+                            id="catholic"
                             name="community"
                             className="peer hidden"
-                            checked={community === "community-b"}
-                            onChange={() => setCommunity("community-b")}
+                            checked={community === "catholic"}
+                            onChange={() => setCommunity("catholic")}
                           />
                           <label
-                            htmlFor="community-b"
+                            htmlFor="catholic"
                             className="flex cursor-pointer items-center justify-center rounded-md border-2 border-muted bg-transparent p-3 text-sm font-medium ring-offset-background peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-ring peer-focus:ring-offset-2"
                           >
-                            Community B
+                            Catholic
                           </label>
                         </div>
                       </div>
