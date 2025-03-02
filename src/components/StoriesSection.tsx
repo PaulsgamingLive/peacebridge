@@ -123,6 +123,12 @@ const StoriesSection = () => {
               >
                 Catholic
               </TabsTrigger>
+              <TabsTrigger 
+                value="other"
+                onClick={() => setSelectedCommunity("other")}
+              >
+                Other
+              </TabsTrigger>
             </TabsList>
           </div>
         </Tabs>

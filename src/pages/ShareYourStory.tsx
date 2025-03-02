@@ -141,7 +141,7 @@ const ShareYourStory = () => {
                       <label htmlFor="community" className="text-sm font-medium">
                         Community
                       </label>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-3 gap-4">
                         <div>
                           <input
                             type="radio"
@@ -172,6 +172,22 @@ const ShareYourStory = () => {
                             className="flex cursor-pointer items-center justify-center rounded-md border-2 border-muted bg-transparent p-3 text-sm font-medium ring-offset-background peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-ring peer-focus:ring-offset-2"
                           >
                             Catholic
+                          </label>
+                        </div>
+                        <div>
+                          <input
+                            type="radio"
+                            id="other"
+                            name="community"
+                            className="peer hidden"
+                            checked={community === "other"}
+                            onChange={() => setCommunity("other")}
+                          />
+                          <label
+                            htmlFor="other"
+                            className="flex cursor-pointer items-center justify-center rounded-md border-2 border-muted bg-transparent p-3 text-sm font-medium ring-offset-background peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-ring peer-focus:ring-offset-2"
+                          >
+                            Other
                           </label>
                         </div>
                       </div>
