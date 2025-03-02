@@ -25,7 +25,7 @@ const StoriesSection = () => {
   const stories: Story[] = [
     {
       id: "1",
-      name: "Sarah McBride",
+      name: "Sarah Bride",
       avatar: "S",
       community: "protestant",
       quote: "I never thought I would sit across from someone I once considered an enemy.",
