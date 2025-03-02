@@ -2,11 +2,16 @@
 import React, { useEffect, useRef } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
 
 interface TimelineEvent {
   year: string;
   title: string;
   description: string;
+  link?: {
+    url: string;
+    label: string;
+  };
 }
 
 const TimelineSection = () => {
@@ -17,7 +22,11 @@ const TimelineSection = () => {
     {
       year: "1998",
       title: "Good Friday Agreement",
-      description: "A major political agreement that effectively ended decades of violence and established a framework for peaceful governance."
+      description: "A major political agreement that effectively ended decades of violence and established a framework for peaceful governance.",
+      link: {
+        url: "https://en.wikipedia.org/wiki/Good_Friday_Agreement",
+        label: "Wikipedia: Good Friday Agreement"
+      }
     },
     {
       year: "2005",
@@ -118,7 +127,19 @@ const TimelineSection = () => {
                       {event.year}
                     </span>
                     <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-                    <p className="text-foreground/70">{event.description}</p>
+                    <p className="text-foreground/70 mb-3">{event.description}</p>
+                    
+                    {event.link && (
+                      <a 
+                        href={event.link.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sm text-primary hover:text-primary/70 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 mr-1.5" />
+                        {event.link.label}
+                      </a>
+                    )}
                   </div>
                 </div>
                 
