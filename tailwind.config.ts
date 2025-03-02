@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -84,11 +85,60 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					from: {
+						opacity: '0'
+					},
+					to: {
+						opacity: '1'
+					}
+				},
+				'fade-up': {
+					from: {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'text-reveal': {
+					from: {
+						clipPath: 'inset(0 100% 0 0)'
+					},
+					to: {
+						clipPath: 'inset(0 0 0 0)'
+					}
+				},
+				'blur-in': {
+					from: {
+						filter: 'blur(10px)',
+						opacity: '0'
+					},
+					to: {
+						filter: 'blur(0)',
+						opacity: '1'
+					}
+				},
+				'pan-right': {
+					from: {
+						backgroundPosition: '0% center'
+					},
+					to: {
+						backgroundPosition: '100% center'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.7s ease-out',
+				'fade-up': 'fade-up 0.8s ease-out',
+				'text-reveal': 'text-reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1)',
+				'blur-in': 'blur-in 1s ease-out',
+				'pan-right': 'pan-right 20s linear infinite'
 			}
 		}
 	},

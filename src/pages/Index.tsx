@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect } from 'react';
+import Navbar from '@/components/Navbar';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import StoriesSection from '@/components/StoriesSection';
+import TimelineSection from '@/components/TimelineSection';
+import DialogueSection from '@/components/DialogueSection';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import { setupScrollAnimations } from '@/utils/animation';
 
 const Index = () => {
+  useEffect(() => {
+    const cleanup = setupScrollAnimations();
+    
+    return () => {
+      if (cleanup) cleanup();
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen bg-background">
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <StoriesSection />
+      <TimelineSection />
+      <DialogueSection />
+      <Footer />
+      <ScrollToTop />
+    </main>
   );
 };
 
