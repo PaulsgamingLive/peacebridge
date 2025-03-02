@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +26,11 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
           <span className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
             Peace Bridge
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
@@ -57,6 +58,12 @@ const Navbar = () => {
           >
             Dialogue
           </a>
+          <Link 
+            to="/share-your-story"
+            className="text-foreground/80 hover:text-primary transition-colors duration-200"
+          >
+            Share Story
+          </Link>
           <Button 
             variant="default" 
             className="rounded-full px-6 hover-lift"
@@ -106,6 +113,13 @@ const Navbar = () => {
             >
               Dialogue
             </a>
+            <Link
+              to="/share-your-story"
+              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Share Story
+            </Link>
             <Button 
               variant="default" 
               className="rounded-full px-6 w-full"

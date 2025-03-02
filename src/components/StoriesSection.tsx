@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Quote } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Story {
   id: string;
@@ -166,12 +167,14 @@ const StoriesSection = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <Button 
-            variant="outline" 
-            className="rounded-full px-6 hover-lift"
-          >
-            Share Your Story
-          </Button>
+          <Link to="/share-your-story">
+            <Button 
+              variant="outline" 
+              className="rounded-full px-6 hover-lift"
+            >
+              Share Your Story
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
