@@ -86,6 +86,72 @@ const mlaData: MLA[] = [
     office: "76 University Street, Belfast, BT7 1HB",
     image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey",
     profileUrl: "https://www.niassembly.gov.uk/your-mlas/clare-bailey/"
+  },
+  {
+    id: 7,
+    name: "Jim Allister",
+    party: "TUV",
+    constituency: "North Antrim",
+    email: "jim.allister@mla.niassembly.gov.uk",
+    phone: "028 2075 1865",
+    office: "38 Henry Street, Ballymena, BT42 3AH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Allister",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jim-allister/"
+  },
+  {
+    id: 8,
+    name: "Gerry Carroll",
+    party: "People Before Profit",
+    constituency: "West Belfast",
+    email: "gerry.carroll@mla.niassembly.gov.uk",
+    phone: "028 9023 3547",
+    office: "273 Falls Road, Belfast, BT12 6FB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Carroll",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/gerry-carroll/"
+  },
+  {
+    id: 9,
+    name: "John O'Dowd",
+    party: "Sinn Féin",
+    constituency: "Upper Bann",
+    email: "john.odowd@mla.niassembly.gov.uk",
+    phone: "028 3834 0991",
+    office: "58 William Street, Lurgan, BT66 6JB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+O'Dowd",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/john-odowd/"
+  },
+  {
+    id: 10,
+    name: "Gordon Lyons",
+    party: "DUP",
+    constituency: "East Antrim",
+    email: "gordon.lyons@mla.niassembly.gov.uk",
+    phone: "028 2826 9200",
+    office: "24 Main Street, Larne, BT40 1SP",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Lyons",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/gordon-lyons/"
+  },
+  {
+    id: 11,
+    name: "Matthew O'Toole",
+    party: "SDLP",
+    constituency: "South Belfast",
+    email: "matthew.otoole@mla.niassembly.gov.uk",
+    phone: "028 9052 0010",
+    office: "3 Cregagh Road, Belfast, BT6 8PX",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Toole",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/matthew-otoole/"
+  },
+  {
+    id: 12,
+    name: "Caoimhe Archibald",
+    party: "Sinn Féin",
+    constituency: "East Derry",
+    email: "caoimhe.archibald@mla.niassembly.gov.uk",
+    phone: "028 7744 1766",
+    office: "47 Main Street, Dungiven, BT47 4LG",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Archibald",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/caoimhe-archibald/"
   }
 ];
 
