@@ -18,7 +18,6 @@ interface MLA {
   phone: string;
   office: string;
   image: string;
-  community: "Protestant" | "Catholic" | "Other" | null;
 }
 
 const mlaData: MLA[] = [
@@ -30,8 +29,7 @@ const mlaData: MLA[] = [
     email: "michelle.oneill@mla.niassembly.gov.uk",
     phone: "028 8674 8090",
     office: "8 - 10 Market Square, Coalisland, Co. Tyrone, BT71 4NB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Neill",
-    community: "Catholic"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Neill"
   },
   {
     id: 2,
@@ -41,8 +39,7 @@ const mlaData: MLA[] = [
     email: "emma.little-pengelly@mla.niassembly.gov.uk",
     phone: "028 9266 3800",
     office: "58 Bachelors Walk, Lisburn, BT28 1XN",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Pengelly",
-    community: "Protestant"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Pengelly"
   },
   {
     id: 3,
@@ -52,8 +49,7 @@ const mlaData: MLA[] = [
     email: "doug.beattie@mla.niassembly.gov.uk",
     phone: "028 3833 2421",
     office: "34a Bridge Street, Portadown, BT63 5AE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie",
-    community: "Protestant"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie"
   },
   {
     id: 4,
@@ -63,8 +59,7 @@ const mlaData: MLA[] = [
     email: "colum.eastwood@mla.niassembly.gov.uk",
     phone: "028 7136 5516",
     office: "32 Bishop Street, Derry, BT48 6PR",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Eastwood",
-    community: "Catholic"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Eastwood"
   },
   {
     id: 5,
@@ -74,8 +69,7 @@ const mlaData: MLA[] = [
     email: "naomi.long@mla.niassembly.gov.uk",
     phone: "028 9047 2004",
     office: "5 Ardenlee Avenue, Belfast, BT6 8QF",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Long",
-    community: "Other"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Long"
   },
   {
     id: 6,
@@ -85,26 +79,17 @@ const mlaData: MLA[] = [
     email: "clare.bailey@mla.niassembly.gov.uk",
     phone: "028 9052 1141",
     office: "76 University Street, Belfast, BT7 1HB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey",
-    community: "Other"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey"
   }
 ];
 
 const MLAs = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
 
   const filteredMLAs = mlaData.filter(mla => {
-    const matchesSearch = 
-      mla.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    return mla.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       mla.constituency.toLowerCase().includes(searchTerm.toLowerCase()) ||
       mla.party.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    if (activeTab === "all") return matchesSearch;
-    if (activeTab === "protestant") return matchesSearch && mla.community === "Protestant";
-    if (activeTab === "catholic") return matchesSearch && mla.community === "Catholic";
-    if (activeTab === "other") return matchesSearch && mla.community === "Other";
-    return matchesSearch;
   });
 
   return (
@@ -132,15 +117,6 @@ const MLAs = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
-            <Tabs defaultValue="all" className="w-full md:w-auto" onValueChange={setActiveTab}>
-              <TabsList>
-                <TabsTrigger value="all">All MLAs</TabsTrigger>
-                <TabsTrigger value="protestant">Protestant</TabsTrigger>
-                <TabsTrigger value="catholic">Catholic</TabsTrigger>
-                <TabsTrigger value="other">Other</TabsTrigger>
-              </TabsList>
-            </Tabs>
           </div>
         </div>
 
