@@ -1,384 +1,322 @@
 
-import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ScrollToTop";
+import ScrollToTop from "@/components/ScrollToTop";
 
 interface MLA {
   id: number;
   name: string;
   party: string;
   constituency: string;
-  email?: string;
-  phone?: string;
+  email: string;
+  phone: string;
   office: string;
   image: string;
-  profileUrl?: string;
+  profileUrl: string;
 }
 
 const mlaData: MLA[] = [
   {
     id: 1,
-    name: "Dr Steve Aiken OBE",
-    party: "Ulster Unionist Party",
-    constituency: "South Antrim",
-    phone: "02893344966",
-    office: "3 The Square, Ballyclare, BT39 9BB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Aiken",
-    email: "steve.aiken@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/steve-aiken/"
+    name: "Michelle O'Neill",
+    party: "Sinn Féin",
+    constituency: "Mid Ulster",
+    email: "michelle.oneill@mla.niassembly.gov.uk",
+    phone: "028 8674 8090",
+    office: "8 - 10 Market Square, Coalisland, Co. Tyrone, BT71 4NB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Neill",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/michelle-oneill/"
   },
   {
     id: 2,
-    name: "Mr Andy Allen MBE",
-    party: "Ulster Unionist Party",
-    constituency: "East Belfast",
-    phone: "028 9046 3900",
-    office: "174 ALBERTBRIDGE ROAD, BALLYMACARRET, BALLYMACARRET, BELFAST, BT5 4GS",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=A+Allen",
-    email: "andy.allen@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/andy-allen/"
+    name: "Emma Little-Pengelly",
+    party: "DUP",
+    constituency: "Lagan Valley",
+    email: "emma.little-pengelly@mla.niassembly.gov.uk",
+    phone: "028 9266 3800",
+    office: "58 Bachelors Walk, Lisburn, BT28 1XN",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Pengelly",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/emma-little-pengelly/"
   },
   {
     id: 3,
-    name: "Dr Caoimhe Archibald",
-    party: "Sinn Féin",
-    constituency: "East Londonderry",
-    phone: "02877 742488",
-    office: "81 Main Street, Dungiven, BT47 4LE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Archibald",
-    email: "caoimhe.archibald@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/caoimhe-archibald/"
-  },
-  {
-    id: 4,
-    name: "Ms Kellie Armstrong",
-    party: "Alliance Party",
-    constituency: "Strangford",
-    phone: "028 9181 1414",
-    office: "Unit 3 Conway Buildings, 14 South Street, Corporation North, Newtownards, BT23 4JT",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Armstrong",
-    email: "kellie.armstrong@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/kellie-armstrong/"
-  },
-  {
-    id: 5,
-    name: "Mr Danny Baker",
-    party: "Sinn Féin",
-    constituency: "West Belfast",
-    phone: "028 9061 1176",
-    office: "UNIT 23, THE NEW DAIRY FARM CENTRE, STEWARTSTOWN ROAD, POLEGLASS, DUNMURRY, BT17 0AW",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Baker",
-    email: "danny.baker@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/danny-baker/"
-  },
-  {
-    id: 6,
-    name: "Mr Doug Beattie MC",
-    party: "Ulster Unionist Party",
+    name: "Doug Beattie",
+    party: "UUP",
     constituency: "Upper Bann",
-    phone: "028 3835 0004",
-    office: "103 BRIDGE STREET, EDENDERRY, PORTADOWN, BT63 5AA",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie",
     email: "doug.beattie@mla.niassembly.gov.uk",
+    phone: "028 3833 2421",
+    office: "34a Bridge Street, Portadown, BT63 5AE",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie",
     profileUrl: "https://www.niassembly.gov.uk/your-mlas/doug-beattie/"
   },
   {
+    id: 4,
+    name: "Colum Eastwood",
+    party: "SDLP",
+    constituency: "Foyle",
+    email: "colum.eastwood@mla.niassembly.gov.uk",
+    phone: "028 7136 5516",
+    office: "32 Bishop Street, Derry, BT48 6PR",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Eastwood",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/colum-eastwood/"
+  },
+  {
+    id: 5,
+    name: "Naomi Long",
+    party: "Alliance",
+    constituency: "East Belfast",
+    email: "naomi.long@mla.niassembly.gov.uk",
+    phone: "028 9047 2004",
+    office: "5 Ardenlee Avenue, Belfast, BT6 8QF",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Long",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/naomi-long/"
+  },
+  {
+    id: 6,
+    name: "Clare Bailey",
+    party: "Green Party",
+    constituency: "South Belfast",
+    email: "clare.bailey@mla.niassembly.gov.uk",
+    phone: "028 9052 1141",
+    office: "76 University Street, Belfast, BT7 1HB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/clare-bailey/"
+  },
+  {
     id: 7,
-    name: "Mr John Blair",
-    party: "Alliance Party",
-    constituency: "South Antrim",
-    phone: "02890 840930",
-    office: "Unit 1C, 55 High Street, Town Parks, Antrim, BT41 4AY",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Blair",
-    email: "john.blair@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/john-blair/"
+    name: "Jim Allister",
+    party: "TUV",
+    constituency: "North Antrim",
+    email: "jim.allister@mla.niassembly.gov.uk",
+    phone: "028 2075 1865",
+    office: "38 Henry Street, Ballymena, BT42 3AH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Allister",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jim-allister/"
   },
   {
     id: 8,
-    name: "Mr Cathal Boylan",
-    party: "Sinn Féin",
-    constituency: "Newry and Armagh",
-    phone: "02837 511797",
-    office: "24 Ogle Street, Corporation, Armagh, BT61 7EW",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Boylan",
-    email: "cathal.boylan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/cathal-boylan/"
-  },
-  {
-    id: 9,
-    name: "Mr Maurice Bradley",
-    party: "Democratic Unionist Party",
-    constituency: "East Londonderry",
-    phone: "02870 356990",
-    office: "22 NEW ROW, COLERAINE AND SUBURBS, COLERAINE, BT52 1AF",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Bradley",
-    email: "maurice.bradley@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/maurice-bradley/"
-  },
-  {
-    id: 10,
-    name: "Ms Paula Bradshaw",
-    party: "Alliance Party",
-    constituency: "South Belfast",
-    phone: "028 90328162",
-    office: "291 ORMEAU ROAD, ORMEAU, BALLYNAFOY, BELFAST, BT7 3GG",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Bradshaw",
-    email: "paula.bradshaw@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/paula-bradshaw/"
-  },
-  {
-    id: 11,
-    name: "Mr Phillip Brett",
-    party: "Democratic Unionist Party",
-    constituency: "North Belfast",
-    phone: "02890 027 277",
-    office: "277 Shore Road, Skegoneill, Belfast, BT15 3PW",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Brett",
-    email: "phillip.brett@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/phillip-brett/"
-  },
-  {
-    id: 12,
-    name: "Miss Nicola Brogan",
-    party: "Sinn Féin",
-    constituency: "West Tyrone",
-    phone: "028 8225 3040",
-    office: "4 James Street, Meetinghousehill, Omagh, BT78 1DH",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Brogan",
-    email: "nicola.brogan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/nicola-brogan/"
-  },
-  {
-    id: 13,
-    name: "Mr David Brooks",
-    party: "Democratic Unionist Party",
-    constituency: "East Belfast",
-    phone: "028 9694 4487",
-    office: "977 Upper Newtownards Road, Church Quarter, Dundonald, BT16 1RL",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Brooks",
-    email: "david.brooks@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/david-brooks/"
-  },
-  {
-    id: 14,
-    name: "Ms Cheryl Brownlee",
-    party: "Democratic Unionist Party",
-    constituency: "East Antrim",
-    office: "1C Castle Street, Carrickfergus, BT38 7BE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Brownlee",
-    email: "cheryl.brownlee@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/cheryl-brownlee/"
-  },
-  {
-    id: 15,
-    name: "Mr Keith Buchanan",
-    party: "Democratic Unionist Party",
-    constituency: "Mid Ulster",
-    phone: "028 7930 0295",
-    office: "2 QUEENS AVENUE, TOWN PARKS OF MAGHERAFELT, MAGHERAFELT, BT45 6BU",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Buchanan",
-    email: "keith.buchanan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/keith-buchanan/"
-  },
-  {
-    id: 16,
-    name: "Mr Tom Buchanan",
-    party: "Democratic Unionist Party",
-    constituency: "West Tyrone",
-    phone: "028 8224 7702",
-    office: "52 MARKET STREET, OMAGH, BT78 1EH",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=T+Buchanan",
-    email: "tom.buchanan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/tom-buchanan/"
-  },
-  {
-    id: 17,
-    name: "Mr Jonathan Buckley",
-    party: "Democratic Unionist Party",
-    constituency: "Upper Bann",
-    phone: "02838 894477",
-    office: "6 WEST STREET, TAVANAGH, PORTADOWN, BT62 3PD",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Buckley",
-    email: "jonathan.buckley@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jonathan-buckley/"
-  },
-  {
-    id: 18,
-    name: "Ms Joanne Bunting",
-    party: "Democratic Unionist Party",
-    constituency: "East Belfast",
-    phone: "028 9079 7100",
-    office: "220 KNOCK ROAD, CARNAMUCK, BELFAST, BT5 6QD",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Bunting",
-    email: "joanne.bunting@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/joanne-bunting/"
-  },
-  {
-    id: 19,
-    name: "Mr Robbie Butler",
-    party: "Ulster Unionist Party",
-    constituency: "Lagan Valley",
-    phone: "02892 44 9898",
-    office: "59 BRIDGE STREET, LISNAGARVY, LISBURN, BT28 1XZ",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=R+Butler",
-    email: "robbie.butler@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/robbie-butler/"
-  },
-  {
-    id: 20,
-    name: "Mrs Pam Cameron",
-    party: "Democratic Unionist Party",
-    constituency: "South Antrim",
-    phone: "02890 34 2234",
-    office: "12A BEVERLEY ROAD, BALLYDUFF, NEWTOWNABBEY, BT36 6QD",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Cameron",
-    email: "pam.cameron@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/pam-cameron/"
-  },
-  {
-    id: 21,
-    name: "Mr Gerry Carroll",
-    party: "People Before Profit Alliance",
+    name: "Gerry Carroll",
+    party: "People Before Profit",
     constituency: "West Belfast",
-    phone: "02890 23 1628",
-    office: "208 FALLS ROAD, TOWN PARKS, BELFAST, BT12 6AH",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Carroll",
     email: "gerry.carroll@mla.niassembly.gov.uk",
+    phone: "028 9023 3547",
+    office: "273 Falls Road, Belfast, BT12 6FB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Carroll",
     profileUrl: "https://www.niassembly.gov.uk/your-mlas/gerry-carroll/"
   },
   {
+    id: 9,
+    name: "John O'Dowd",
+    party: "Sinn Féin",
+    constituency: "Upper Bann",
+    email: "john.odowd@mla.niassembly.gov.uk",
+    phone: "028 3834 0991",
+    office: "58 William Street, Lurgan, BT66 6JB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+O'Dowd",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/john-odowd/"
+  },
+  {
+    id: 10,
+    name: "Gordon Lyons",
+    party: "DUP",
+    constituency: "East Antrim",
+    email: "gordon.lyons@mla.niassembly.gov.uk",
+    phone: "028 2826 9200",
+    office: "24 Main Street, Larne, BT40 1SP",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Lyons",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/gordon-lyons/"
+  },
+  {
+    id: 11,
+    name: "Matthew O'Toole",
+    party: "SDLP",
+    constituency: "South Belfast",
+    email: "matthew.otoole@mla.niassembly.gov.uk",
+    phone: "028 9052 0010",
+    office: "3 Cregagh Road, Belfast, BT6 8PX",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Toole",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/matthew-otoole/"
+  },
+  {
+    id: 12,
+    name: "Caoimhe Archibald",
+    party: "Sinn Féin",
+    constituency: "East Derry",
+    email: "caoimhe.archibald@mla.niassembly.gov.uk",
+    phone: "028 7744 1766",
+    office: "47 Main Street, Dungiven, BT47 4LG",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Archibald",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/caoimhe-archibald/"
+  },
+  {
+    id: 13,
+    name: "Kellie Armstrong",
+    party: "Alliance",
+    constituency: "Strangford",
+    email: "kellie.armstrong@mla.niassembly.gov.uk",
+    phone: "028 9181 4806",
+    office: "19 The Square, Newtownards, BT23 4FB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Armstrong",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/kellie-armstrong/"
+  },
+  {
+    id: 14,
+    name: "Harry Harvey",
+    party: "DUP",
+    constituency: "Strangford",
+    email: "harry.harvey@mla.niassembly.gov.uk",
+    phone: "028 9756 1200",
+    office: "6 Church Street, Saintfield, BT24 7LR",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=H+Harvey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/harry-harvey/"
+  },
+  {
+    id: 15,
+    name: "Mike Nesbitt",
+    party: "UUP",
+    constituency: "Strangford",
+    email: "mike.nesbitt@mla.niassembly.gov.uk",
+    phone: "028 9145 5969",
+    office: "34a Upper Greenwell Street, Newtownards, BT23 7JJ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Nesbitt",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/mike-nesbitt/"
+  },
+  {
+    id: 16,
+    name: "Jonathan Buckley",
+    party: "DUP",
+    constituency: "Upper Bann",
+    email: "jonathan.buckley@mla.niassembly.gov.uk",
+    phone: "028 3833 1088",
+    office: "3 Church Place, Lurgan, BT66 6EY",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Buckley",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jonathan-buckley/"
+  },
+  {
+    id: 17,
+    name: "Eóin Tennyson",
+    party: "Alliance",
+    constituency: "Upper Bann",
+    email: "eoin.tennyson@mla.niassembly.gov.uk",
+    phone: "028 3834 2452",
+    office: "54 Church Place, Lurgan, BT66 6HD",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Tennyson",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/eoin-tennyson/"
+  },
+  {
+    id: 18,
+    name: "Paula Bradshaw",
+    party: "Alliance",
+    constituency: "South Belfast",
+    email: "paula.bradshaw@mla.niassembly.gov.uk",
+    phone: "028 9064 1303",
+    office: "7 Annadale Avenue, Belfast, BT7 3JH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Bradshaw",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/paula-bradshaw/"
+  },
+  {
+    id: 19,
+    name: "Kate Nicholl",
+    party: "Alliance",
+    constituency: "South Belfast",
+    email: "kate.nicholl@mla.niassembly.gov.uk",
+    phone: "028 9064 1303",
+    office: "7 Annadale Avenue, Belfast, BT7 3JH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Nicholl",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/kate-nicholl/"
+  },
+  {
+    id: 20,
+    name: "Deirdre Hargey",
+    party: "Sinn Féin",
+    constituency: "South Belfast",
+    email: "deirdre.hargey@mla.niassembly.gov.uk",
+    phone: "028 9024 2426",
+    office: "Sinn Féin Head Office, 51-53 Falls Road, Belfast, BT12 4PD",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Hargey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/deirdre-hargey/"
+  },
+  {
+    id: 21,
+    name: "Edwin Poots",
+    party: "DUP",
+    constituency: "Lagan Valley",
+    email: "edwin.poots@mla.niassembly.gov.uk",
+    phone: "028 9266 5516",
+    office: "47B Ballymacash Road, Lisburn, BT28 3EZ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Poots",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/edwin-poots/"
+  },
+  {
     id: 22,
-    name: "Mr Alan Chambers",
-    party: "Ulster Unionist Party",
-    constituency: "North Down",
-    phone: "02891 47 7555",
-    office: "1a DONAGHADEE ROAD, GROOMSPORT, BT19 6LG",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=A+Chambers",
-    email: "alan.chambers@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/alan-chambers/"
+    name: "Sorcha Eastwood",
+    party: "Alliance",
+    constituency: "Lagan Valley",
+    email: "sorcha.eastwood@mla.niassembly.gov.uk",
+    phone: "028 9266 2503",
+    office: "18a Bow Street, Lisburn, BT28 1BN",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Eastwood",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/sorcha-eastwood/"
   },
   {
     id: 23,
-    name: "Mr Trevor Clarke",
-    party: "Democratic Unionist Party",
-    constituency: "South Antrim",
-    phone: "028 9446 3273",
-    office: "1 RAILWAY STREET, TOWNS PARKS, ANTRIM, BT41 4AE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=T+Clarke",
-    email: "trevor.clarke@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/trevor-clarke/"
+    name: "Diane Forsythe",
+    party: "DUP",
+    constituency: "South Down",
+    email: "diane.forsythe@mla.niassembly.gov.uk",
+    phone: "028 4461 3427",
+    office: "18 Newcastle Street, Kilkeel, BT34 4AF",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Forsythe",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/diane-forsythe/"
   },
   {
     id: 24,
-    name: "Mr Colin Crawford",
-    party: "Ulster Unionist Party",
-    constituency: "North Antrim",
-    office: "76 Church Street, Town Parks, Ballymena, BT43 6DF",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Crawford",
-    email: "colin.crawford@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/colin-crawford/"
+    name: "Sinéad Ennis",
+    party: "Sinn Féin",
+    constituency: "South Down",
+    email: "sinead.ennis@mla.niassembly.gov.uk",
+    phone: "028 4175 7900",
+    office: "31 St. Mary's Street, Newry, BT34 1AR",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Ennis",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/sinead-ennis/"
   },
   {
     id: 25,
-    name: "Mr Pádraig Delargy",
-    party: "Sinn Féin",
-    constituency: "Foyle",
-    office: "18 Bishop Street, Derry / Londonderry, BT48 6UX",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Delargy",
-    email: "padraig.delargy@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/padraig-delargy/"
+    name: "Colin McGrath",
+    party: "SDLP",
+    constituency: "South Down",
+    email: "colin.mcgrath@mla.niassembly.gov.uk",
+    phone: "028 4372 4374",
+    office: "6 St. Patrick's Avenue, Downpatrick, BT30 6DW",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+McGrath",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/colin-mcgrath/"
   },
   {
     id: 26,
-    name: "Mr Stewart Dickson",
-    party: "Alliance Party",
-    constituency: "East Antrim",
-    phone: "028 9335 0286",
-    office: "8 WEST STREET, CARRICKFERGUS, BT38 7AR",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Dickson",
-    email: "stewart.dickson@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/stewart-dickson/"
+    name: "Gary Middleton",
+    party: "DUP",
+    constituency: "Foyle",
+    email: "gary.middleton@mla.niassembly.gov.uk",
+    phone: "028 7127 1588",
+    office: "Unit 2, 2nd Floor, River House, Castle Street, Londonderry, BT48 6HQ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Middleton",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/gary-middleton/"
   },
   {
     id: 27,
-    name: "Mrs Linda Dillon",
-    party: "Sinn Féin",
-    constituency: "Mid Ulster",
-    phone: "028 8774 8689",
-    office: "7-9 The Square, Gortnaskea, Coalisland, BT71 4LN",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=L+Dillon",
-    email: "linda.dillon@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/linda-dillon/"
-  },
-  {
-    id: 28,
-    name: "Mrs Diane Dodds",
-    party: "Democratic Unionist Party",
-    constituency: "Upper Bann",
-    phone: "02840 520048",
-    office: "27 BRIDGE STREET, BALLYVALLY, BANBRIDGE, BT32 3JL",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Dodds",
-    email: "diane.dodds@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/diane-dodds/"
-  },
-  {
-    id: 29,
-    name: "Miss Jemma Dolan",
-    party: "Sinn Féin",
-    constituency: "Fermanagh and South Tyrone",
-    phone: "028 6632 8214",
-    office: "7 MARKET STREET, ENNISKILLEN, BT74 7DS",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Dolan",
-    email: "jemma.dolan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jemma-dolan/"
-  },
-  {
-    id: 30,
-    name: "Mr Danny Donnelly",
-    party: "Alliance Party",
-    constituency: "East Antrim",
-    office: "73 Main Street, Town Parks, Larne, BT40 1HH",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Donnelly",
-    email: "danny.donnelly@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/danny-donnelly/"
-  },
-  {
-    id: 31,
-    name: "Mr Stephen Dunne",
-    party: "Democratic Unionist Party",
-    constituency: "North Down",
-    phone: "02891 245 277",
-    office: "86 High Street, Corporation, Bangor, BT20 5BA",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Dunne",
-    email: "stephen.dunne@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/stephen-dunne/"
-  },
-  {
-    id: 32,
-    name: "Mr Mark Durkan",
-    party: "Social Democratic and Labour Party",
+    name: "Mark H Durkan",
+    party: "SDLP",
     constituency: "Foyle",
-    phone: "028 7136 5516",
-    office: "141H Strand Road, Rock Mills, Edenballymore, Derry, BT48 7PB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Durkan",
     email: "mark.durkan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/mark-durkan/"
-  },
-  {
-    id: 33,
-    name: "Ms Connie Egan",
-    party: "Alliance Party",
-    constituency: "North Down",
-    phone: "028 9189 8170",
-    office: "12 HAMILTON ROAD, CORPORATION, BANGOR, BT20 4LE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Egan",
-    email: "connie.egan@mla.niassembly.gov.uk",
-    profileUrl: "https://www.niassembly.gov.uk/your-mlas/connie-egan/"
+    phone: "028 7136 0700",
+    office: "28a Bishop Street, Derry, BT48 6PP",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Durkan",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/mark-h-durkan/"
   }
 ];
 
@@ -431,42 +369,36 @@ const MLAs = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {mla.email && (
-                      <div className="flex items-start">
-                        <Mail className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
-                        <a 
-                          href={`mailto:${mla.email}`} 
-                          className="text-sm text-primary hover:underline overflow-hidden text-ellipsis"
-                        >
-                          {mla.email}
-                        </a>
-                      </div>
-                    )}
-                    {mla.phone && (
-                      <div className="flex items-start">
-                        <Phone className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
-                        <a href={`tel:${mla.phone}`} className="text-sm hover:underline">
-                          {mla.phone}
-                        </a>
-                      </div>
-                    )}
+                    <div className="flex items-start">
+                      <Mail className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                      <a 
+                        href={`mailto:${mla.email}`} 
+                        className="text-sm text-primary hover:underline overflow-hidden text-ellipsis"
+                      >
+                        {mla.email}
+                      </a>
+                    </div>
+                    <div className="flex items-start">
+                      <Phone className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                      <a href={`tel:${mla.phone}`} className="text-sm hover:underline">
+                        {mla.phone}
+                      </a>
+                    </div>
                     <div className="flex items-start">
                       <MapPin className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
                       <span className="text-sm">{mla.office}</span>
                     </div>
-                    {mla.profileUrl && (
-                      <a 
-                        href={mla.profileUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-full mt-4 block"
-                      >
-                        <Button className="w-full" variant="outline">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          View Profile
-                        </Button>
-                      </a>
-                    )}
+                    <a 
+                      href={mla.profileUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full mt-4 block"
+                    >
+                      <Button className="w-full" variant="outline">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Profile
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>
