@@ -388,17 +388,30 @@ const MLAs = () => {
                       <MapPin className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
                       <span className="text-sm">{mla.office}</span>
                     </div>
-                    <a 
-                      href={mla.profileUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-full mt-4 block"
-                    >
-                      <Button className="w-full" variant="outline">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        View Profile
-                      </Button>
-                    </a>
+                    <div className="space-y-2 mt-4">
+                      <a 
+                        href={mla.profileUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-full block"
+                      >
+                        <Button className="w-full" variant="outline">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          View Profile
+                        </Button>
+                      </a>
+                      <a 
+                        href="https://www.niassembly.gov.uk/your-mlas/members-salaries-and-expenses/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full block"
+                      >
+                        <Button className="w-full" variant="outline">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Salaries & Expenses
+                        </Button>
+                      </a>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
