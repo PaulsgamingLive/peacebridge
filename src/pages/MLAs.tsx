@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -16,6 +17,7 @@ interface MLA {
   phone: string;
   office: string;
   image: string;
+  profileUrl: string;
 }
 
 const mlaData: MLA[] = [
@@ -27,7 +29,8 @@ const mlaData: MLA[] = [
     email: "michelle.oneill@mla.niassembly.gov.uk",
     phone: "028 8674 8090",
     office: "8 - 10 Market Square, Coalisland, Co. Tyrone, BT71 4NB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Neill"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+O'Neill",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/michelle-oneill/"
   },
   {
     id: 2,
@@ -37,7 +40,8 @@ const mlaData: MLA[] = [
     email: "emma.little-pengelly@mla.niassembly.gov.uk",
     phone: "028 9266 3800",
     office: "58 Bachelors Walk, Lisburn, BT28 1XN",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Pengelly"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Pengelly",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/emma-little-pengelly/"
   },
   {
     id: 3,
@@ -47,7 +51,8 @@ const mlaData: MLA[] = [
     email: "doug.beattie@mla.niassembly.gov.uk",
     phone: "028 3833 2421",
     office: "34a Bridge Street, Portadown, BT63 5AE",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Beattie",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/doug-beattie/"
   },
   {
     id: 4,
@@ -57,7 +62,8 @@ const mlaData: MLA[] = [
     email: "colum.eastwood@mla.niassembly.gov.uk",
     phone: "028 7136 5516",
     office: "32 Bishop Street, Derry, BT48 6PR",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Eastwood"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Eastwood",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/colum-eastwood/"
   },
   {
     id: 5,
@@ -67,7 +73,8 @@ const mlaData: MLA[] = [
     email: "naomi.long@mla.niassembly.gov.uk",
     phone: "028 9047 2004",
     office: "5 Ardenlee Avenue, Belfast, BT6 8QF",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Long"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=N+Long",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/naomi-long/"
   },
   {
     id: 6,
@@ -77,7 +84,8 @@ const mlaData: MLA[] = [
     email: "clare.bailey@mla.niassembly.gov.uk",
     phone: "028 9052 1141",
     office: "76 University Street, Belfast, BT7 1HB",
-    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey"
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Bailey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/clare-bailey/"
   }
 ];
 
@@ -153,10 +161,17 @@ const MLAs = () => {
                       <MapPin className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
                       <span className="text-sm">{mla.office}</span>
                     </div>
-                    <Button className="w-full mt-4" variant="outline">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Profile
-                    </Button>
+                    <a 
+                      href={mla.profileUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full mt-4 block"
+                    >
+                      <Button className="w-full" variant="outline">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Profile
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>
