@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -400,36 +400,72 @@ const MLAs = () => {
                           View Profile
                         </Button>
                       </a>
-                      <Button 
-                        className="w-full" 
-                        variant="outline"
-                        onClick={() => {
-                          const expenditureData = fetchExpenditureData();
-                          const mlaName = mla.name;
-                          expenditureData.then(data => {
-                            const mlaExpenditure = data.find(item => 
-                              item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
-                              mla.name.toLowerCase().includes(item.name.toLowerCase())
-                            );
+                      <div className="relative w-full">
+                        <details className="w-full cursor-pointer">
+                          <summary className="w-full list-none">
+                            <Button className="w-full" variant="outline">
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              View Expenses
+                            </Button>
+                          </summary>
+                          <div className="absolute z-10 w-full bg-white dark:bg-gray-900 shadow-lg rounded-md mt-2 p-4 border border-gray-200 dark:border-gray-800">
+                            {(() => {
+                              const [expData, setExpData] = useState(null);
+                              const [loading, setLoading] = useState(true);
 
-                            if (mlaExpenditure) {
-                              alert(
-                                `${mla.name} - Expenditure (April-Sept 2024):\n` +
-                                `Office Rent: £${mlaExpenditure.officeRent.toLocaleString()}\n` +
-                                `Office Costs: £${mlaExpenditure.officeCosts.toLocaleString()}\n` +
-                                `Travel Expenses: £${mlaExpenditure.travelExpenses.toLocaleString()}\n` +
-                                `Staffing Salaries: £${mlaExpenditure.staffingSalaries.toLocaleString()}\n` +
-                                `Total: £${mlaExpenditure.totalExpenditure.toLocaleString()}`
+                              useEffect(() => {
+                                async function loadData() {
+                                  try {
+                                    setLoading(true);
+                                    const data = await fetchExpenditureData();
+                                    const mlaExpenditure = data.find(item => 
+                                      item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
+                                      mla.name.toLowerCase().includes(item.name.toLowerCase())
+                                    );
+                                    setExpData(mlaExpenditure || null);
+                                  } catch (error) {
+                                    console.error("Error loading expenditure data:", error);
+                                  } finally {
+                                    setLoading(false);
+                                  }
+                                }
+                                
+                                loadData();
+                              }, []);
+
+                              if (loading) {
+                                return <p className="text-center py-2">Loading...</p>;
+                              }
+
+                              if (!expData) {
+                                return <p className="text-center py-2">No expenditure data available</p>;
+                              }
+
+                              return (
+                                <div className="space-y-2 text-sm">
+                                  <h3 className="font-bold text-md mb-2">{mla.name} - Expenditure (April-Sept 2024)</h3>
+                                  <div className="grid grid-cols-2 gap-1">
+                                    <span className="text-muted-foreground">Office Rent:</span>
+                                    <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
+                                    
+                                    <span className="text-muted-foreground">Office Costs:</span>
+                                    <span className="text-right font-medium">£{expData.officeCosts.toLocaleString()}</span>
+                                    
+                                    <span className="text-muted-foreground">Travel Expenses:</span>
+                                    <span className="text-right font-medium">£{expData.travelExpenses.toLocaleString()}</span>
+                                    
+                                    <span className="text-muted-foreground">Staffing Salaries:</span>
+                                    <span className="text-right font-medium">£{expData.staffingSalaries.toLocaleString()}</span>
+                                    
+                                    <span className="text-muted-foreground font-medium">Total:</span>
+                                    <span className="text-right font-bold">£{expData.totalExpenditure.toLocaleString()}</span>
+                                  </div>
+                                </div>
                               );
-                            } else {
-                              alert(`No expenditure data available for ${mla.name}`);
-                            }
-                          });
-                        }}
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        View Expenses
-                      </Button>
+                            })()}
+                          </div>
+                        </details>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
