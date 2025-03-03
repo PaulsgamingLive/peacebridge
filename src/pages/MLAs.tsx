@@ -401,9 +401,7 @@ const MLAs = () => {
                         </Button>
                       </a>
                       <a 
-                        href="https://www.niassembly.gov.uk/your-mlas/members-salaries-and-expenses/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/members-salaries"
                         className="w-full block"
                       >
                         <Button className="w-full" variant="outline">
