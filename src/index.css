@@ -76,15 +76,17 @@
   }
 }
 
+@import url('../styles/3d-effects.css');
+
 .scroll-trigger {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(30px) translateZ(-10px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .scroll-trigger.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
 }
 
 .gradient-bg {
@@ -92,10 +94,17 @@
               url('/placeholder.svg') no-repeat center center;
   background-size: cover;
   opacity: 0.8;
+  transform-style: preserve-3d;
 }
 
 .hover-lift {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px) translateZ(15px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .hover-lift:hover {

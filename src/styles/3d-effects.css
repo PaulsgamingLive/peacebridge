@@ -1,0 +1,122 @@
+
+/* 3D Effects for Peace Bridge Site */
+:root {
+  --perspective: 1000px;
+  --rotation-angle: 10deg;
+  --transition-duration: 0.6s;
+  --depth-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  --hover-depth: 20px;
+}
+
+/* Base 3D container styles */
+.perspective-container {
+  perspective: var(--perspective);
+  perspective-origin: center;
+  transform-style: preserve-3d;
+}
+
+/* 3D card effects */
+.card-3d {
+  transition: transform var(--transition-duration) ease-out, box-shadow var(--transition-duration) ease-out;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-3d:hover {
+  transform: translateZ(var(--hover-depth)) rotateX(2deg);
+  box-shadow: var(--depth-shadow);
+}
+
+/* 3D button effects */
+.button-3d {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.button-3d:hover {
+  transform: translateY(-3px) translateZ(5px);
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-3d:active {
+  transform: translateY(0) translateZ(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D page transitions */
+.page-transition-3d {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform var(--transition-duration) cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.page-enter-3d {
+  transform: rotateY(90deg) translateZ(100px);
+  opacity: 0;
+}
+
+.page-enter-active-3d {
+  transform: rotateY(0deg) translateZ(0);
+  opacity: 1;
+}
+
+.page-exit-3d {
+  transform: rotateY(0) translateZ(0);
+  opacity: 1;
+}
+
+.page-exit-active-3d {
+  transform: rotateY(-90deg) translateZ(100px);
+  opacity: 0;
+}
+
+/* 3D text effect */
+.text-3d {
+  text-shadow: 0px 1px 0px rgba(255,255,255,0.5), 
+               0px 2px 0px rgba(255,255,255,0.4),
+               0px 3px 2px rgba(0,0,0,0.1);
+  transform: perspective(500px);
+  transition: transform 0.3s ease;
+}
+
+.text-3d:hover {
+  transform: perspective(500px) rotateX(5deg) translateZ(10px);
+}
+
+/* Parallax scrolling effect */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax-layer-back {
+  transform: translateZ(-2px) scale(3);
+}
+
+.parallax-layer-base {
+  transform: translateZ(0);
+}
+
+.parallax-layer-front {
+  transform: translateZ(1px) scale(0.5);
+}
+
+/* 3D tilt effect with mouse movement */
+.tilt-3d {
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
+}
