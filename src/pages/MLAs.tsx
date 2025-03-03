@@ -13,28 +13,47 @@ const ExpensesDropdown = ({ mla }) => {
   const [expData, setExpData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [autoRefresh, setAutoRefresh] = useState(false);
 
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      const data = await fetchExpenditureData();
+      const mlaExpenditure = data.find(item => 
+        item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
+        mla.name.toLowerCase().includes(item.name.toLowerCase())
+      );
+      setExpData(mlaExpenditure || null);
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error("Error loading expenditure data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load data when dropdown is opened
   useEffect(() => {
     if (isOpen) {
-      async function loadData() {
-        try {
-          setLoading(true);
-          const data = await fetchExpenditureData();
-          const mlaExpenditure = data.find(item => 
-            item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
-            mla.name.toLowerCase().includes(item.name.toLowerCase())
-          );
-          setExpData(mlaExpenditure || null);
-        } catch (error) {
-          console.error("Error loading expenditure data:", error);
-        } finally {
-          setLoading(false);
-        }
-      }
-      
       loadData();
     }
   }, [isOpen, mla.name]);
+
+  // Auto-refresh functionality
+  useEffect(() => {
+    let intervalId;
+    
+    if (isOpen && autoRefresh) {
+      intervalId = setInterval(() => {
+        loadData();
+      }, 30000); // Check for updates every 30 seconds
+    }
+    
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isOpen, autoRefresh, mla.name]);
 
   return (
     <div className="relative w-full">
@@ -55,7 +74,31 @@ const ExpensesDropdown = ({ mla }) => {
             <p className="text-center py-2">No expenditure data available</p>
           ) : (
             <div className="space-y-2 text-sm">
-              <h3 className="font-bold text-md mb-2">{mla.name} - Expenditure (April-Sept 2024)</h3>
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-bold text-md">{mla.name} - Expenditure (April-Sept 2024)</h3>
+                <div className="flex items-center space-x-2">
+                  <button 
+                    onClick={loadData} 
+                    className="text-xs bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded"
+                  >
+                    Refresh
+                  </button>
+                  <label className="flex items-center space-x-1 text-xs">
+                    <input 
+                      type="checkbox" 
+                      checked={autoRefresh} 
+                      onChange={() => setAutoRefresh(!autoRefresh)} 
+                      className="rounded"
+                    />
+                    <span>Auto</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div className="text-xs text-muted-foreground mb-2">
+                Last updated: {lastUpdated.toLocaleTimeString()}
+              </div>
+              
               <div className="grid grid-cols-2 gap-1">
                 <span className="text-muted-foreground">Office Rent:</span>
                 <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
