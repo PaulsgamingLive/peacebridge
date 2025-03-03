@@ -10,8 +10,6 @@ import ShareYourStory from "./pages/ShareYourStory";
 import MLAs from "./pages/MLAs";
 import PageTransition3D from "./components/PageTransition3D";
 import { AnimatePresence } from "framer-motion";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { ThemeToggleWrapper } from "./components/ThemeToggleWrapper";
 
 const queryClient = new QueryClient();
 
@@ -35,18 +33,15 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => (
-  <ThemeProvider defaultTheme="system" storageKey="peace-bridge-theme">
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ThemeToggleWrapper />
-          <AnimatedRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </ThemeProvider>
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
 
 export default App;
