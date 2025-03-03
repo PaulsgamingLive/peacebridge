@@ -1,12 +1,12 @@
 
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Search, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
+import ScrollToTop from "@/components/ScrollToTop";
 
 interface MLA {
   id: number;
@@ -111,19 +111,15 @@ const MLAs = () => {
           </p>
         </div>
 
-        <div className="mb-8" data-aos="fade-up" data-aos-delay="100">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full md:w-96">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search by name, constituency, or party..."
-                className="pl-10"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
+        <div className="relative mb-12 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="100">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+          <Input
+            type="text"
+            placeholder="Search by name, constituency, or party..."
+            className="pl-10 py-6"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
 
         {filteredMLAs.length === 0 ? (
