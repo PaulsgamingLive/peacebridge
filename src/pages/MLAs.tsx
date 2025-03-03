@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
+import fetchExpenditureData from '../utils/fetchExpenditure'; // Import statement added
 
 interface MLA {
   id: number;
@@ -332,7 +332,7 @@ const MLAs = () => {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      
+
       <div className="container mx-auto px-4 py-24 max-w-7xl">
         <div className="mb-10 text-center" data-aos="fade-up">
           <h1 className="text-4xl font-bold mb-4">Northern Ireland MLAs</h1>
@@ -400,15 +400,36 @@ const MLAs = () => {
                           View Profile
                         </Button>
                       </a>
-                      <a 
-                        href="/members-salaries"
-                        className="w-full block"
+                      <Button 
+                        className="w-full" 
+                        variant="outline"
+                        onClick={() => {
+                          const expenditureData = fetchExpenditureData();
+                          const mlaName = mla.name;
+                          expenditureData.then(data => {
+                            const mlaExpenditure = data.find(item => 
+                              item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
+                              mla.name.toLowerCase().includes(item.name.toLowerCase())
+                            );
+
+                            if (mlaExpenditure) {
+                              alert(
+                                `${mla.name} - Expenditure (April-Sept 2024):\n` +
+                                `Office Rent: £${mlaExpenditure.officeRent.toLocaleString()}\n` +
+                                `Office Costs: £${mlaExpenditure.officeCosts.toLocaleString()}\n` +
+                                `Travel Expenses: £${mlaExpenditure.travelExpenses.toLocaleString()}\n` +
+                                `Staffing Salaries: £${mlaExpenditure.staffingSalaries.toLocaleString()}\n` +
+                                `Total: £${mlaExpenditure.totalExpenditure.toLocaleString()}`
+                              );
+                            } else {
+                              alert(`No expenditure data available for ${mla.name}`);
+                            }
+                          });
+                        }}
                       >
-                        <Button className="w-full" variant="outline">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Salaries & Expenses
-                        </Button>
-                      </a>
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Expenses
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
