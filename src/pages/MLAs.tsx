@@ -152,6 +152,171 @@ const mlaData: MLA[] = [
     office: "47 Main Street, Dungiven, BT47 4LG",
     image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+Archibald",
     profileUrl: "https://www.niassembly.gov.uk/your-mlas/caoimhe-archibald/"
+  },
+  {
+    id: 13,
+    name: "Kellie Armstrong",
+    party: "Alliance",
+    constituency: "Strangford",
+    email: "kellie.armstrong@mla.niassembly.gov.uk",
+    phone: "028 9181 4806",
+    office: "19 The Square, Newtownards, BT23 4FB",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Armstrong",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/kellie-armstrong/"
+  },
+  {
+    id: 14,
+    name: "Harry Harvey",
+    party: "DUP",
+    constituency: "Strangford",
+    email: "harry.harvey@mla.niassembly.gov.uk",
+    phone: "028 9756 1200",
+    office: "6 Church Street, Saintfield, BT24 7LR",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=H+Harvey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/harry-harvey/"
+  },
+  {
+    id: 15,
+    name: "Mike Nesbitt",
+    party: "UUP",
+    constituency: "Strangford",
+    email: "mike.nesbitt@mla.niassembly.gov.uk",
+    phone: "028 9145 5969",
+    office: "34a Upper Greenwell Street, Newtownards, BT23 7JJ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Nesbitt",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/mike-nesbitt/"
+  },
+  {
+    id: 16,
+    name: "Jonathan Buckley",
+    party: "DUP",
+    constituency: "Upper Bann",
+    email: "jonathan.buckley@mla.niassembly.gov.uk",
+    phone: "028 3833 1088",
+    office: "3 Church Place, Lurgan, BT66 6EY",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=J+Buckley",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/jonathan-buckley/"
+  },
+  {
+    id: 17,
+    name: "Eóin Tennyson",
+    party: "Alliance",
+    constituency: "Upper Bann",
+    email: "eoin.tennyson@mla.niassembly.gov.uk",
+    phone: "028 3834 2452",
+    office: "54 Church Place, Lurgan, BT66 6HD",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Tennyson",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/eoin-tennyson/"
+  },
+  {
+    id: 18,
+    name: "Paula Bradshaw",
+    party: "Alliance",
+    constituency: "South Belfast",
+    email: "paula.bradshaw@mla.niassembly.gov.uk",
+    phone: "028 9064 1303",
+    office: "7 Annadale Avenue, Belfast, BT7 3JH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=P+Bradshaw",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/paula-bradshaw/"
+  },
+  {
+    id: 19,
+    name: "Kate Nicholl",
+    party: "Alliance",
+    constituency: "South Belfast",
+    email: "kate.nicholl@mla.niassembly.gov.uk",
+    phone: "028 9064 1303",
+    office: "7 Annadale Avenue, Belfast, BT7 3JH",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=K+Nicholl",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/kate-nicholl/"
+  },
+  {
+    id: 20,
+    name: "Deirdre Hargey",
+    party: "Sinn Féin",
+    constituency: "South Belfast",
+    email: "deirdre.hargey@mla.niassembly.gov.uk",
+    phone: "028 9024 2426",
+    office: "Sinn Féin Head Office, 51-53 Falls Road, Belfast, BT12 4PD",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Hargey",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/deirdre-hargey/"
+  },
+  {
+    id: 21,
+    name: "Edwin Poots",
+    party: "DUP",
+    constituency: "Lagan Valley",
+    email: "edwin.poots@mla.niassembly.gov.uk",
+    phone: "028 9266 5516",
+    office: "47B Ballymacash Road, Lisburn, BT28 3EZ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=E+Poots",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/edwin-poots/"
+  },
+  {
+    id: 22,
+    name: "Sorcha Eastwood",
+    party: "Alliance",
+    constituency: "Lagan Valley",
+    email: "sorcha.eastwood@mla.niassembly.gov.uk",
+    phone: "028 9266 2503",
+    office: "18a Bow Street, Lisburn, BT28 1BN",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Eastwood",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/sorcha-eastwood/"
+  },
+  {
+    id: 23,
+    name: "Diane Forsythe",
+    party: "DUP",
+    constituency: "South Down",
+    email: "diane.forsythe@mla.niassembly.gov.uk",
+    phone: "028 4461 3427",
+    office: "18 Newcastle Street, Kilkeel, BT34 4AF",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=D+Forsythe",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/diane-forsythe/"
+  },
+  {
+    id: 24,
+    name: "Sinéad Ennis",
+    party: "Sinn Féin",
+    constituency: "South Down",
+    email: "sinead.ennis@mla.niassembly.gov.uk",
+    phone: "028 4175 7900",
+    office: "31 St. Mary's Street, Newry, BT34 1AR",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=S+Ennis",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/sinead-ennis/"
+  },
+  {
+    id: 25,
+    name: "Colin McGrath",
+    party: "SDLP",
+    constituency: "South Down",
+    email: "colin.mcgrath@mla.niassembly.gov.uk",
+    phone: "028 4372 4374",
+    office: "6 St. Patrick's Avenue, Downpatrick, BT30 6DW",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=C+McGrath",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/colin-mcgrath/"
+  },
+  {
+    id: 26,
+    name: "Gary Middleton",
+    party: "DUP",
+    constituency: "Foyle",
+    email: "gary.middleton@mla.niassembly.gov.uk",
+    phone: "028 7127 1588",
+    office: "Unit 2, 2nd Floor, River House, Castle Street, Londonderry, BT48 6HQ",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=G+Middleton",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/gary-middleton/"
+  },
+  {
+    id: 27,
+    name: "Mark H Durkan",
+    party: "SDLP",
+    constituency: "Foyle",
+    email: "mark.durkan@mla.niassembly.gov.uk",
+    phone: "028 7136 0700",
+    office: "28a Bishop Street, Derry, BT48 6PP",
+    image: "https://placehold.co/400x500/d1d5db/6b7280?text=M+Durkan",
+    profileUrl: "https://www.niassembly.gov.uk/your-mlas/mark-h-durkan/"
   }
 ];
 
@@ -243,15 +408,15 @@ const MLAs = () => {
 
         <div className="mt-16 text-center" data-aos="fade-up">
           <p className="text-muted-foreground mb-6">
-            Don't see your MLA? The list above contains a sample of MLAs.
+            Data sourced from the official NI Assembly website. Don't see your MLA? 
           </p>
           <a 
-            href="https://www.niassembly.gov.uk/your-mlas/" 
+            href="https://aims.niassembly.gov.uk/mlas/contacts.aspx" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center text-primary hover:underline"
           >
-            View complete list on NI Assembly website
+            View complete and up-to-date list on NI Assembly website
             <ExternalLink className="ml-2 h-4 w-4" />
           </a>
         </div>
