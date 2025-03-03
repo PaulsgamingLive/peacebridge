@@ -8,6 +8,7 @@ import TimelineSection from '@/components/TimelineSection';
 import DialogueSection from '@/components/DialogueSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import ChatBot from '@/components/ChatBot/ChatBot';
 import { setupScrollAnimations } from '@/utils/animation';
 
 const Index = () => {
@@ -29,6 +30,7 @@ const Index = () => {
       <DialogueSection />
       <Footer />
       <ScrollToTop />
+      <ChatBot />
     </main>
   );
 };
