@@ -1,10 +1,8 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
@@ -127,14 +125,7 @@ const MLAs = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
             {filteredMLAs.map((mla) => (
-              <Card key={mla.id} className="overflow-hidden transition-all hover:shadow-md">
-                <div className="aspect-[4/3] relative">
-                  <img 
-                    src={mla.image} 
-                    alt={mla.name} 
-                    className="object-cover w-full h-full"
-                  />
-                </div>
+              <Card key={mla.id} className="transition-all hover:shadow-md">
                 <CardHeader>
                   <CardTitle>{mla.name}</CardTitle>
                   <CardDescription>
