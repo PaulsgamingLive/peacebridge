@@ -1,13 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AIAgent from "@/components/AIAgent";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,6 +71,13 @@ const Navbar = () => {
           >
             Join Us
           </Button>
+          <Button 
+            variant="default" 
+            className="rounded-full px-6 hover-lift"
+            onClick={() => setIsChatOpen(true)}
+          >
+            Chat with AI
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -128,6 +136,19 @@ const Navbar = () => {
               Join Us
             </Button>
           </nav>
+        </div>
+      )}
+      {isChatOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="relative w-full max-w-md">
+            <AIAgent />
+            <button
+              className="absolute top-2 right-2 text-white bg-red-500 rounded-full p-2"
+              onClick={() => setIsChatOpen(false)}
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
     </header>
