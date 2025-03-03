@@ -8,6 +8,86 @@ import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
 import fetchExpenditureData from '../utils/fetchExpenditure'; // Import statement added
 
+// Define the ExpensesDropdown component to properly handle the React state
+const ExpensesDropdown = ({ mla }) => {
+  const [expData, setExpData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      async function loadData() {
+        try {
+          setLoading(true);
+          const data = await fetchExpenditureData();
+          const mlaExpenditure = data.find(item => 
+            item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
+            mla.name.toLowerCase().includes(item.name.toLowerCase())
+          );
+          setExpData(mlaExpenditure || null);
+        } catch (error) {
+          console.error("Error loading expenditure data:", error);
+        } finally {
+          setLoading(false);
+        }
+      }
+      
+      loadData();
+    }
+  }, [isOpen, mla.name]);
+
+  return (
+    <div className="relative w-full">
+      <Button 
+        className="w-full" 
+        variant="outline"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <ExternalLink className="mr-2 h-4 w-4" />
+        View Expenses
+      </Button>
+
+      {isOpen && (
+        <div className="absolute z-10 w-full bg-white dark:bg-gray-900 shadow-lg rounded-md mt-2 p-4 border border-gray-200 dark:border-gray-800">
+          {loading ? (
+            <p className="text-center py-2">Loading...</p>
+          ) : !expData ? (
+            <p className="text-center py-2">No expenditure data available</p>
+          ) : (
+            <div className="space-y-2 text-sm">
+              <h3 className="font-bold text-md mb-2">{mla.name} - Expenditure (April-Sept 2024)</h3>
+              <div className="grid grid-cols-2 gap-1">
+                <span className="text-muted-foreground">Office Rent:</span>
+                <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
+                
+                <span className="text-muted-foreground">Office Costs:</span>
+                <span className="text-right font-medium">£{expData.officeCosts.toLocaleString()}</span>
+                
+                <span className="text-muted-foreground">Travel Expenses:</span>
+                <span className="text-right font-medium">£{expData.travelExpenses.toLocaleString()}</span>
+                
+                <span className="text-muted-foreground">Staffing Salaries:</span>
+                <span className="text-right font-medium">£{expData.staffingSalaries.toLocaleString()}</span>
+                
+                <span className="text-muted-foreground font-medium">Total:</span>
+                <span className="text-right font-bold">£{expData.totalExpenditure.toLocaleString()}</span>
+              </div>
+            </div>
+          )}
+          <Button 
+            className="w-full mt-3" 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setIsOpen(false)}
+          >
+            Close
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+};
+
 interface MLA {
   id: number;
   name: string;
@@ -400,72 +480,7 @@ const MLAs = () => {
                           View Profile
                         </Button>
                       </a>
-                      <div className="relative w-full">
-                        <details className="w-full cursor-pointer">
-                          <summary className="w-full list-none">
-                            <Button className="w-full" variant="outline">
-                              <ExternalLink className="mr-2 h-4 w-4" />
-                              View Expenses
-                            </Button>
-                          </summary>
-                          <div className="absolute z-10 w-full bg-white dark:bg-gray-900 shadow-lg rounded-md mt-2 p-4 border border-gray-200 dark:border-gray-800">
-                            {(() => {
-                              const [expData, setExpData] = useState(null);
-                              const [loading, setLoading] = useState(true);
-
-                              useEffect(() => {
-                                async function loadData() {
-                                  try {
-                                    setLoading(true);
-                                    const data = await fetchExpenditureData();
-                                    const mlaExpenditure = data.find(item => 
-                                      item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
-                                      mla.name.toLowerCase().includes(item.name.toLowerCase())
-                                    );
-                                    setExpData(mlaExpenditure || null);
-                                  } catch (error) {
-                                    console.error("Error loading expenditure data:", error);
-                                  } finally {
-                                    setLoading(false);
-                                  }
-                                }
-                                
-                                loadData();
-                              }, []);
-
-                              if (loading) {
-                                return <p className="text-center py-2">Loading...</p>;
-                              }
-
-                              if (!expData) {
-                                return <p className="text-center py-2">No expenditure data available</p>;
-                              }
-
-                              return (
-                                <div className="space-y-2 text-sm">
-                                  <h3 className="font-bold text-md mb-2">{mla.name} - Expenditure (April-Sept 2024)</h3>
-                                  <div className="grid grid-cols-2 gap-1">
-                                    <span className="text-muted-foreground">Office Rent:</span>
-                                    <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
-                                    
-                                    <span className="text-muted-foreground">Office Costs:</span>
-                                    <span className="text-right font-medium">£{expData.officeCosts.toLocaleString()}</span>
-                                    
-                                    <span className="text-muted-foreground">Travel Expenses:</span>
-                                    <span className="text-right font-medium">£{expData.travelExpenses.toLocaleString()}</span>
-                                    
-                                    <span className="text-muted-foreground">Staffing Salaries:</span>
-                                    <span className="text-right font-medium">£{expData.staffingSalaries.toLocaleString()}</span>
-                                    
-                                    <span className="text-muted-foreground font-medium">Total:</span>
-                                    <span className="text-right font-bold">£{expData.totalExpenditure.toLocaleString()}</span>
-                                  </div>
-                                </div>
-                              );
-                            })()}
-                          </div>
-                        </details>
-                      </div>
+                      <ExpensesDropdown mla={mla} />
                     </div>
                   </div>
                 </CardContent>
