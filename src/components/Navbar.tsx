@@ -64,6 +64,12 @@ const Navbar = () => {
           >
             Share Story
           </Link>
+          <Link 
+            to="/mlas"
+            className="text-foreground/80 hover:text-primary transition-colors duration-200"
+          >
+            MLAs
+          </Link>
           <Button 
             variant="default" 
             className="rounded-full px-6 hover-lift"
@@ -119,6 +125,13 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Share Story
+            </Link>
+            <Link
+              to="/mlas"
+              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              MLAs
             </Link>
             <Button 
               variant="default" 
