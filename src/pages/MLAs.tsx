@@ -43,13 +43,13 @@ const ExpensesDropdown = ({ mla }) => {
   // Auto-refresh functionality
   useEffect(() => {
     let intervalId;
-    
+
     if (isOpen && autoRefresh) {
       intervalId = setInterval(() => {
         loadData();
       }, 30000); // Check for updates every 30 seconds
     }
-    
+
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
@@ -68,50 +68,59 @@ const ExpensesDropdown = ({ mla }) => {
 
       {isOpen && (
         <div className="absolute z-10 w-full bg-white dark:bg-gray-900 shadow-lg rounded-md mt-2 p-4 border border-gray-200 dark:border-gray-800">
+          <div className="flex items-center justify-between mb-3">
+            <div className="text-xs text-muted-foreground">
+              Last updated: {lastUpdated.toLocaleTimeString()}
+            </div>
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={loadData} 
+                className="text-xs text-primary hover:underline flex items-center"
+              >
+                <svg className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Refresh
+              </button>
+              <label className="flex items-center text-xs cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={() => setAutoRefresh(!autoRefresh)}
+                  className="mr-1 h-3 w-3"
+                />
+                Auto-refresh
+              </label>
+            </div>
+          </div>
+
           {loading ? (
-            <p className="text-center py-2">Loading...</p>
+            <div className="p-4 text-center">
+              <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto"></div>
+              <p className="mt-2 text-sm text-muted-foreground">Loading expenditure data...</p>
+            </div>
           ) : !expData ? (
             <p className="text-center py-2">No expenditure data available</p>
           ) : (
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="font-bold text-md">{mla.name} - Expenditure (April-Sept 2024)</h3>
-                <div className="flex items-center space-x-2">
-                  <button 
-                    onClick={loadData} 
-                    className="text-xs bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded"
-                  >
-                    Refresh
-                  </button>
-                  <label className="flex items-center space-x-1 text-xs">
-                    <input 
-                      type="checkbox" 
-                      checked={autoRefresh} 
-                      onChange={() => setAutoRefresh(!autoRefresh)} 
-                      className="rounded"
-                    />
-                    <span>Auto</span>
-                  </label>
-                </div>
-              </div>
-              
+              <h3 className="font-bold text-md">{mla.name} - Expenditure (April-Sept 2024)</h3>
               <div className="text-xs text-muted-foreground mb-2">
                 Last updated: {lastUpdated.toLocaleTimeString()}
               </div>
-              
+
               <div className="grid grid-cols-2 gap-1">
                 <span className="text-muted-foreground">Office Rent:</span>
                 <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
-                
+
                 <span className="text-muted-foreground">Office Costs:</span>
                 <span className="text-right font-medium">£{expData.officeCosts.toLocaleString()}</span>
-                
+
                 <span className="text-muted-foreground">Travel Expenses:</span>
                 <span className="text-right font-medium">£{expData.travelExpenses.toLocaleString()}</span>
-                
+
                 <span className="text-muted-foreground">Staffing Salaries:</span>
                 <span className="text-right font-medium">£{expData.staffingSalaries.toLocaleString()}</span>
-                
+
                 <span className="text-muted-foreground font-medium">Total:</span>
                 <span className="text-right font-bold">£{expData.totalExpenditure.toLocaleString()}</span>
               </div>
