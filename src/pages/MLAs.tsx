@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
-import fetchExpenditureData from '../utils/fetchExpenditure'; // Import statement added
+import fetchExpenditureData from '../utils/fetchExpenditure';
 
 // Define the ExpensesDropdown component to properly handle the React state
 const ExpensesDropdown = ({ mla }) => {
@@ -525,7 +526,6 @@ const MLAs = () => {
                         href={mla.profileUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="w-full block"
                       >
                         <Button className="w-full" variant="outline">
                           <ExternalLink className="mr-2 h-4 w-4" />
