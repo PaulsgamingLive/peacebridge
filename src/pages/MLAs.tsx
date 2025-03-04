@@ -1,145 +1,10 @@
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
+import { Mail, MapPin, Phone, Search } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
-import fetchExpenditureData from '../utils/fetchExpenditure';
-
-// Define the ExpensesDropdown component to properly handle the React state
-const ExpensesDropdown = ({ mla }) => {
-  const [expData, setExpData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState(new Date());
-  const [autoRefresh, setAutoRefresh] = useState(false);
-
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      const data = await fetchExpenditureData();
-      const mlaExpenditure = data.find(item => 
-        item.name.toLowerCase().includes(mla.name.toLowerCase()) ||
-        mla.name.toLowerCase().includes(item.name.toLowerCase())
-      );
-      setExpData(mlaExpenditure || null);
-      setLastUpdated(new Date());
-    } catch (error) {
-      console.error("Error loading expenditure data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Load data when dropdown is opened
-  useEffect(() => {
-    if (isOpen) {
-      loadData();
-    }
-  }, [isOpen, mla.name]);
-
-  // Auto-refresh functionality
-  useEffect(() => {
-    let intervalId;
-
-    if (isOpen && autoRefresh) {
-      intervalId = setInterval(() => {
-        loadData();
-      }, 30000); // Check for updates every 30 seconds
-    }
-
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [isOpen, autoRefresh, mla.name]);
-
-  return (
-    <div className="relative w-full">
-      <Button 
-        className="w-full" 
-        variant="outline"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <ExternalLink className="mr-2 h-4 w-4" />
-        View Expenses
-      </Button>
-
-      {isOpen && (
-        <div className="absolute z-10 w-full bg-white dark:bg-gray-900 shadow-lg rounded-md mt-2 p-4 border border-gray-200 dark:border-gray-800">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xs text-muted-foreground">
-              Last updated: {lastUpdated.toLocaleTimeString()}
-            </div>
-            <div className="flex items-center space-x-2">
-              <button 
-                onClick={loadData} 
-                className="text-xs text-primary hover:underline flex items-center"
-              >
-                <svg className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                Refresh
-              </button>
-              <label className="flex items-center text-xs cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={autoRefresh}
-                  onChange={() => setAutoRefresh(!autoRefresh)}
-                  className="mr-1 h-3 w-3"
-                />
-                Auto-refresh
-              </label>
-            </div>
-          </div>
-
-          {loading ? (
-            <div className="p-4 text-center">
-              <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full mx-auto"></div>
-              <p className="mt-2 text-sm text-muted-foreground">Loading expenditure data...</p>
-            </div>
-          ) : !expData ? (
-            <p className="text-center py-2">No expenditure data available</p>
-          ) : (
-            <div className="space-y-2 text-sm">
-              <h3 className="font-bold text-md">{mla.name} - Expenditure (April-Sept 2024)</h3>
-              <div className="text-xs text-muted-foreground mb-2">
-                Last updated: {lastUpdated.toLocaleTimeString()}
-              </div>
-
-              <div className="grid grid-cols-2 gap-1">
-                <span className="text-muted-foreground">Office Rent:</span>
-                <span className="text-right font-medium">£{expData.officeRent.toLocaleString()}</span>
-
-                <span className="text-muted-foreground">Office Costs:</span>
-                <span className="text-right font-medium">£{expData.officeCosts.toLocaleString()}</span>
-
-                <span className="text-muted-foreground">Travel Expenses:</span>
-                <span className="text-right font-medium">£{expData.travelExpenses.toLocaleString()}</span>
-
-                <span className="text-muted-foreground">Staffing Salaries:</span>
-                <span className="text-right font-medium">£{expData.staffingSalaries.toLocaleString()}</span>
-
-                <span className="text-muted-foreground font-medium">Total:</span>
-                <span className="text-right font-bold">£{expData.totalExpenditure.toLocaleString()}</span>
-              </div>
-            </div>
-          )}
-          <Button 
-            className="w-full mt-3" 
-            variant="ghost" 
-            size="sm"
-            onClick={() => setIsOpen(false)}
-          >
-            Close
-          </Button>
-        </div>
-      )}
-    </div>
-  );
-};
 
 interface MLA {
   id: number;
@@ -520,19 +385,6 @@ const MLAs = () => {
                     <div className="flex items-start">
                       <MapPin className="mr-3 h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
                       <span className="text-sm">{mla.office}</span>
-                    </div>
-                    <div className="space-y-2 mt-4">
-                      <a 
-                        href={mla.profileUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                      >
-                        <Button className="w-full" variant="outline">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          View Profile
-                        </Button>
-                      </a>
-                      <ExpensesDropdown mla={mla} />
                     </div>
                   </div>
                 </CardContent>
