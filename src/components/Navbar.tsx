@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -65,12 +64,6 @@ const Navbar = () => {
           >
             MLAs
           </Link>
-          <Button 
-            variant="default" 
-            className="rounded-full px-6 hover-lift"
-          >
-            Join Us
-          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -110,13 +103,6 @@ const Navbar = () => {
             >
               MLAs
             </Link>
-            <Button 
-              variant="default" 
-              className="rounded-full px-6 w-full"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Join Us
-            </Button>
           </nav>
         </div>
       )}
