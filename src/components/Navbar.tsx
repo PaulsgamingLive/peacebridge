@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,14 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Generate section links that work from any page
+  const sectionLinks = [
+    { name: 'About', path: isHomePage ? '#about' : '/#about' },
+    { name: 'Stories', path: isHomePage ? '#stories' : '/#stories' },
+    { name: 'Timeline', path: isHomePage ? '#timeline' : '/#timeline' },
+    { name: 'Dialogue', path: isHomePage ? '#dialogue' : '/#dialogue' },
+  ];
 
   return (
     <header 
@@ -34,30 +44,15 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a 
-            href="#about" 
-            className="text-foreground/80 hover:text-primary transition-colors duration-200"
-          >
-            About
-          </a>
-          <a 
-            href="#stories" 
-            className="text-foreground/80 hover:text-primary transition-colors duration-200"
-          >
-            Stories
-          </a>
-          <a 
-            href="#timeline" 
-            className="text-foreground/80 hover:text-primary transition-colors duration-200"
-          >
-            Timeline
-          </a>
-          <a 
-            href="#dialogue" 
-            className="text-foreground/80 hover:text-primary transition-colors duration-200"
-          >
-            Dialogue
-          </a>
+          {sectionLinks.map((link) => (
+            <a 
+              key={link.name}
+              href={link.path}
+              className="text-foreground/80 hover:text-primary transition-colors duration-200"
+            >
+              {link.name}
+            </a>
+          ))}
           <Link 
             to="/share-your-story"
             className="text-foreground/80 hover:text-primary transition-colors duration-200"
@@ -91,34 +86,16 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg animate-fade-in">
           <nav className="flex flex-col space-y-4 p-6">
-            <a 
-              href="#about" 
-              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </a>
-            <a 
-              href="#stories" 
-              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Stories
-            </a>
-            <a 
-              href="#timeline" 
-              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Timeline
-            </a>
-            <a 
-              href="#dialogue" 
-              className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Dialogue
-            </a>
+            {sectionLinks.map((link) => (
+              <a 
+                key={link.name}
+                href={link.path}
+                className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
             <Link
               to="/share-your-story"
               className="text-foreground/80 hover:text-primary transition-colors duration-200 py-2"
