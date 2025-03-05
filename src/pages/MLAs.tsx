@@ -1,9 +1,10 @@
+
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Mail, MapPin, Phone, Search } from "lucide-react";
+import { ExternalLink, Mail, MapPin, Phone, Search } from "lucide-react";
 import ScrollToTop from "@/components/ScrollToTop";
 
 interface MLA {
