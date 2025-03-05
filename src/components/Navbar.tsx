@@ -34,15 +34,15 @@ const Navbar = () => {
         isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+        <Link to="/" className="flex items-center space-x-2 mb-4 md:mb-0">
           <span className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
             Peace Bridge
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden md:flex items-center space-x-8 mx-auto">
           {sectionLinks.map((link) => (
             <a 
               key={link.name}
@@ -65,6 +65,9 @@ const Navbar = () => {
             MLAs
           </Link>
         </nav>
+
+        {/* Empty div to balance the layout in desktop view */}
+        <div className="hidden md:block"></div>
 
         {/* Mobile Menu Button */}
         <button 
