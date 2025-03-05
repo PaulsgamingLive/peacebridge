@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import MLAs from "./pages/MLAs";
 import MembersSalaries from "./pages/MembersSalaries"; // Added import for MembersSalaries
 import PageTransition3D from "./components/PageTransition3D";
 import { AnimatePresence } from "framer-motion";
+import { AccessibilityProvider } from "./context/AccessibilityContext";
 
 const queryClient = new QueryClient();
 
@@ -36,11 +38,13 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
+      <AccessibilityProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AnimatedRoutes />
+        </BrowserRouter>
+      </AccessibilityProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

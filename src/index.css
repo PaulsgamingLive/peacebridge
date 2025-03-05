@@ -76,6 +76,45 @@
   }
 }
 
+/* High contrast mode styles */
+.high-contrast {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 0%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 60 100% 50%;  /* Yellow for high visibility */
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 90%;
+  --accent: 60 100% 50%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 100% 40%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 100%;
+  --ring: 60 100% 50%;
+}
+
+.high-contrast * {
+  border-color: white !important;
+}
+
+.high-contrast a:hover,
+.high-contrast button:hover:not(:disabled) {
+  color: hsl(60, 100%, 50%) !important; /* Yellow for high visibility */
+  text-decoration: underline;
+}
+
+.high-contrast a:focus,
+.high-contrast button:focus {
+  outline: 2px solid white !important;
+  outline-offset: 2px;
+}
+
 @import url('../styles/3d-effects.css');
 
 .scroll-trigger {
