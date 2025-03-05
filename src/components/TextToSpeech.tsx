@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { Volume2 } from 'lucide-react';
 import { useAccessibility } from '@/hooks/useAccessibility';
@@ -11,7 +11,7 @@ interface TextToSpeechProps {
 }
 
 const TextToSpeech = ({ text, className }: TextToSpeechProps) => {
-  const { isTtsEnabled, speakText } = useAccessibility();
+  const { isTtsEnabled, speakText, isHighContrast } = useAccessibility();
   
   if (!isTtsEnabled) return null;
   
@@ -19,7 +19,11 @@ const TextToSpeech = ({ text, className }: TextToSpeechProps) => {
     <Button
       variant="ghost"
       size="sm"
-      className={cn("p-1 h-auto", className)}
+      className={cn(
+        "p-1 h-auto", 
+        isHighContrast ? "text-yellow-300 hover:text-white" : "text-primary hover:text-primary/80",
+        className
+      )}
       onClick={() => speakText(text)}
       aria-label="Read aloud"
     >

@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import AccessibilityFloatingButton from '@/components/AccessibilityFloatingButton';
 import { setupScrollAnimations } from '@/utils/animation';
+import TextToSpeechDemo from '@/components/TextToSpeechDemo';
 
 const Index = () => {
   useEffect(() => {
@@ -24,6 +25,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
+      <TextToSpeechDemo />
       <AboutSection />
       <StoriesSection />
       <TimelineSection />
